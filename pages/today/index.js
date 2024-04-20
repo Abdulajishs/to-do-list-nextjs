@@ -29,10 +29,20 @@ export default function Today(props) {
 
     console.log(data);
   };
+
+  const deleteTaskHandler = async (id) => {
+    const response = await fetch(`api/delete-task/${id}`, {
+      method: "DELETE",
+    });
+
+    const data = await response.json();
+
+    console.log(data);
+  };
   // console.log(props.tasks);
   return (
     <>
-      <NewTaskForm onAddTask={addTaskHandler} onAddComplete={addCompleteHandler} tasks={props.tasks}/>
+      <NewTaskForm onAddTask={addTaskHandler} onAddComplete={addCompleteHandler} ondeleteTask={deleteTaskHandler} tasks={props.tasks}/>
     </>
   );
 }

@@ -5,6 +5,7 @@ import classes from "./ListTask.module.css";
 const ListTask = (props) =>{
     const  {task} = props;
     const deleteHandler =()=>{
+      props.ondeleteTask(task.id)
     }
     const toggleTaskCompleted = (task) => {
         props.onAddComplete({...task,completed : true})

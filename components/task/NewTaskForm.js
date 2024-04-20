@@ -39,6 +39,7 @@ export default function NewTaskForm(props) {
             key={task.id}
             task={task}
             onAddComplete={props.onAddComplete}
+            ondeleteTask={props.ondeleteTask}
           />
         ))}
       </ListGroup>
