@@ -5,6 +5,9 @@ import ListTask from "./ListTask";
 import classes from "./NewTaskForm.module.css";
 
 export default function NewTaskForm(props) {
+  const incompleteTasks = props.tasks.filter(task => !task.completed);
+  // console.log(incompleteTasks);
+
   const [open, setOpen] = useState(false);
   const nameRef = useRef("");
   const descriptionRef = useRef("");
@@ -13,7 +16,7 @@ export default function NewTaskForm(props) {
     event.preventDefault();
     const name = nameRef.current.value;
     const description = descriptionRef.current.value;
-    const newTask = { id: Date.now(), name, description, completed: false };
+    const newTask = { name, description, completed: false };
 
     props.onAddTask(newTask)
 
@@ -31,7 +34,7 @@ export default function NewTaskForm(props) {
     <Container className={classes.card}>
       <h1>Today</h1>
       <ListGroup>
-        {props.tasks.map((task) => (
+        {incompleteTasks.map((task) => (
           <ListTask
             key={task.id}
             task={task}

@@ -3,7 +3,7 @@ import NewTaskForm from "../../components/task/NewTaskForm";
 
 export default function Today(props) {
   const addTaskHandler = async (taskdata) => {
-    const response = await fetch("api/new-task", {
+    const response = await fetch("api/update-task", {
       method: "POST",
       body: JSON.stringify(taskdata),
       headers: {
@@ -17,8 +17,8 @@ export default function Today(props) {
   };
 
   const addCompleteHandler = async (completedata) => {
-    const response = await fetch("api/complete-task", {
-      method: "POST",
+    const response = await fetch("api/update-task", {
+      method: "PUT",
       body: JSON.stringify(completedata),
       headers: {
         "Content-Type": "application/json",
@@ -50,11 +50,14 @@ export async function getStaticProps() {
 
   return {
     props: {
-      tasks: tasks.map((task) => ({
-        name: task.name,
-        description: task.description,
-        id: task._id.toString(),
-      })),
+      tasks: tasks.map((task) => (
+        {
+            name: task.name,
+            description: task.description,
+            id: task._id.toString(),
+            completed : task.completed,
+        }
+      )),
     },
     revalidate: 1,
   };

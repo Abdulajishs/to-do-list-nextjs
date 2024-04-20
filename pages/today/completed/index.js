@@ -15,7 +15,7 @@ export async function getStaticProps() {
     "mongodb+srv://abdul:AEhDN85438zD7XGG@cluster0.cr8xth8.mongodb.net/to-do-list?retryWrites=true&w=majority&appName=Cluster0"
   );
   const db = client.db();
-  const tasksCollection = db.collection("complete");
+  const tasksCollection = db.collection("tasks");
   const tasks = await tasksCollection.find().toArray();
 
   client.close();
@@ -26,6 +26,7 @@ export async function getStaticProps() {
         name: task.name,
         description: task.description,
         id: task._id.toString(),
+        completed : task.completed,
       })),
     },
     revalidate: 1,

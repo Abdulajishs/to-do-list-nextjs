@@ -4,7 +4,6 @@ import classes from "./ListTask.module.css";
 
 const ListTask = (props) =>{
     const  {task} = props;
-
     const deleteHandler =()=>{
     }
     const toggleTaskCompleted = (task) => {

@@ -1,13 +1,10 @@
-
-// import TaskContext from "@/store/task-context";
-import { useContext } from "react";
 import { ListGroup } from "react-bootstrap";
 
 const CompletedTask = (props) => {
-  // const taskCntx = useContext(TaskContext);
+  const completeTasks = props.tasks.filter(task => task.completed);
   return (
     <ListGroup>
-      {props.tasks.map((task) => (
+      {completeTasks.map((task) => (
         <ListGroup.Item
         variant="primary"
         as="li"
